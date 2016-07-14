@@ -98,6 +98,7 @@ public class my_mainactivity extends Activity implements View.OnClickListener {
     /**
      * 在这里获取到每个需要用到的控件的实例，并给它们设置好必要的点击事件。
      */
+
     private void initViews() {
         jobLayout = findViewById(R.id.job_layout);
         comLayout = findViewById(R.id.com_layout);
