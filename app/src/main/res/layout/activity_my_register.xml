@@ -74,7 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
+            android:text="重复密码"
             android:height="40dip"
             android:id="@+id/textView10" />
 
@@ -102,7 +102,7 @@
             android:height="40dip"
             android:width="70dip"
             android:layout_marginTop="60dip"
-            android:text="确定"
+            android:text="注册"
             android:textColor="#0ff000"
             android:textSize="22dip"
 

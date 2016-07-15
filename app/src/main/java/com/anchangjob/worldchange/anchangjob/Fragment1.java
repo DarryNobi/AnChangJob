@@ -1,12 +1,15 @@
 package com.anchangjob.worldchange.anchangjob;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.app.Activity;
 
 
 /**
@@ -20,13 +23,16 @@ import android.view.ViewGroup;
 public class Fragment1 extends android.app.Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private int statu=0;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    View view;
+    Button bt_login;
+    Button bt_signup;
     private OnFragmentInteractionListener mListener;
 
     public Fragment1() {
@@ -58,13 +64,41 @@ public class Fragment1 extends android.app.Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        if(statu==0)
+        {
+
+
+        }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fragment1, container, false);
+        if(statu==0) {
+             view=inflater.inflate(R.layout.fragment_fragment1_1, container, false);
+            bt_login=(Button) view.findViewById(R.id.button9);
+            bt_signup=(Button) view.findViewById(R.id.button10);
+            bt_login.setOnClickListener(new Button.OnClickListener(){
+
+                public void onClick(View v) {
+
+                    Intent intent = new Intent(getActivity(), my_login.class);
+                    startActivity(intent);
+                }
+            });
+            bt_signup.setOnClickListener(new Button.OnClickListener(){
+
+                public void onClick(View v) {
+
+                    Intent intent = new Intent(getActivity(), my_register.class);
+                    startActivity(intent);
+                }
+            });
+            return view;
+        }else
+            return inflater.inflate(R.layout.fragment_fragment1, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:weightSum="1">
+
+    <ImageView
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_weight="0.87" />
+
+    <TextView
+        android:layout_width="328dp"
+        android:layout_height="133dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="尊敬的用户，您还没有登录，请注册或者登录后体验更多功能！感谢您的使用！"
+        android:textSize="30dp"
+        android:id="@+id/textView12"
+        android:layout_weight="0.14" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="233dp"
+        android:gravity="center">
+
+        <Button
+            android:layout_width="150dip"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:text="登录"
+            android:id="@+id/button9"/>
+
+        <Button
+            android:layout_width="150dip"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:text="注册"
+            android:id="@+id/button10" />
+    </LinearLayout>
+
+</LinearLayout>
