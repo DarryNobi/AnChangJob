@@ -14,6 +14,9 @@ public class Data extends Application {
     public void settab(int n){
         this.tab= n;
     }
+    public void setislogedin(boolean bl){
+        this.islogedin= bl;
+    }
     @Override
     public void onCreate(){
         tab = 0;

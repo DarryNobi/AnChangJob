@@ -17,6 +17,8 @@ import android.widget.TextView;
  */
 public class my_mainactivity extends Activity implements View.OnClickListener {
 
+    final  Data mydata=(Data)getApplication();
+    public Data data=mydata;
     /**
      * 用于展示招聘信息的Fragment
      */
@@ -148,7 +150,7 @@ public class my_mainactivity extends Activity implements View.OnClickListener {
         // 先隐藏掉所有的Fragment，以防止有多个Fragment显示在界面上的情况
         hideFragments(transaction);
         switch (index) {
-            case 0:
+            case 2:
                 // 当点击了消息tab时，改变控件的图片和文字颜色
                 jobImage.setImageResource(R.drawable.job);
                 jobText.setTextColor(Color.BLACK);
@@ -174,7 +176,7 @@ public class my_mainactivity extends Activity implements View.OnClickListener {
                     transaction.show(comFragment);
                 }
                 break;
-            case 2:
+            case 0:
                 // 当点击了动态tab时，改变控件的图片和文字颜色
                 infoImage.setImageResource(R.drawable.info);
                 infoText.setTextColor(Color.BLACK);

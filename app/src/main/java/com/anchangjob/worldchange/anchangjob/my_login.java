@@ -21,7 +21,7 @@ public class my_login extends Activity implements OnClickListener {
     private EditText login_password;
     private Button user_login_button;
     private Button user_register_button;
-
+ Data mydata=(Data)getApplication();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +82,11 @@ public class my_login extends Activity implements OnClickListener {
                 {
                     login();
                 }
-
+                mydata=(Data)getApplication();
+                if(mydata!=null)
+                    mydata.setislogedin(true);
+                Intent intent3=new Intent(my_login.this,my_mainactivity.class);
+                startActivity(intent3);
                 break;
             case R.id.user_register_button:
                 Intent intent2=new Intent(my_login.this,my_register.class);
