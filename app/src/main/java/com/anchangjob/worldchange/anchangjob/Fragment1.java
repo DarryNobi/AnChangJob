@@ -68,11 +68,16 @@ public class Fragment1 extends android.app.Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         statu=((Data) getActivity().getApplication()).islogedin;
-        if(!statu) {
+        if(!statu) {//未登录的情况
              view=inflater.inflate(R.layout.fragment_fragment1_1, container, false);
             bt_login=(Button) view.findViewById(R.id.button9);
             bt_signup=(Button) view.findViewById(R.id.button10);
@@ -94,7 +99,19 @@ public class Fragment1 extends android.app.Fragment {
             });
             return view;
         }else
-        {view= inflater.inflate(R.layout.fragment_fragment1, container, false);
+        {///已登录的情况
+            view= inflater.inflate(R.layout.fragment_fragment1, container, false);
+
+
+            Button bt_myfavorite=(Button)view.findViewById(R.id.button4);
+            bt_myfavorite.setOnClickListener(new Button.OnClickListener(){
+
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), com.anchangjob.worldchange.anchangjob.mine.mine_myfavorite.class);
+                    startActivity(intent);
+                }
+            });
+
             Button bt_exit=(Button)view.findViewById(R.id.button8);
             bt_exit.setOnClickListener(new Button.OnClickListener(){
 
