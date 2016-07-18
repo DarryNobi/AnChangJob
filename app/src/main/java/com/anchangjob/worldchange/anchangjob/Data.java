@@ -7,7 +7,7 @@ public class Data extends Application {
     public int userid;
     public String username;
     public boolean islogedin;
-
+final public String MYURL="http://anchangjob.applinzi.com/";
     public int gettab(){
         return this.tab;
     }
@@ -22,4 +22,5 @@ public class Data extends Application {
         tab = 0;
         super.onCreate();
     }
+
 }

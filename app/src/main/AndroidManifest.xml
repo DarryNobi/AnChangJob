@@ -33,7 +33,8 @@
         <activity
             android:name=".mine.mine_myfavorite"
             android:label="@string/title_activity_mine_myfavorite"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".mine.mine_myinfoset"></activity>
     </application>
 
 </manifest>

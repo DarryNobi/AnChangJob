@@ -1,7 +1,11 @@
 package com.anchangjob.worldchange.anchangjob;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,12 +19,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 public class my_register extends Activity {
 
     private EditText register_username;
     private EditText register_passwd;
     private EditText reregister_passwd;
     private Button register_submit;
+    Data mydata=(Data)getApplication();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
@@ -82,7 +89,41 @@ public class my_register extends Activity {
                 if(!checkEdit()){
                     return;
                 }
+                String username=register_username.getText().toString();
+                String password=register_passwd.getText().toString();
+                HttpURLConnection urlConnection = null;
+                String str=null;
+                try {
 
+                    mydata=(Data) getApplication();
+                    URL url = new URL(mydata.MYURL+"?"+username+"&"+password);
+                    urlConnection = (HttpURLConnection)url.openConnection();
+                    //urlConnection.setRequestMethod("GET");
+                    //urlConnection.connect();
+                    InputStream in =urlConnection.getInputStream();
+                    if(in!=null) {
+                        byte[] data = new byte[1024];
+                        int len;
+                        ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+                        while ((len = in.read(data)) != -1) {
+                            outStream.write(data, 0, len);
+                        }
+                        in.close();
+                        String json = new String(data); // 把字符串组转换成字符串
+                        str = json;
+
+                        try {
+                            JSONObject jsonObject = new JSONObject(json); // 返回的数据形式是一个Object类型，所以可以直接转换成一个Object
+                        } catch (JSONException je) {
+                            je.printStackTrace();
+                        }
+                    }
+                    //int total = jsonObject.getInt("count");
+                    //String keywords = jsonObject.getString("keywords");
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
 
         });

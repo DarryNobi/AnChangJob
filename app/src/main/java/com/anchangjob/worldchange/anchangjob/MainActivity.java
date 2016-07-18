@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         HttpURLConnection urlConnection = null;
         String str=null;
-        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectDiskReads().detectDiskWrites().detectNetwork().penaltyLog().build());
+       // StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectDiskReads().detectDiskWrites().detectNetwork().penaltyLog().build());
 
         try {
             URL url = new URL("http://202.108.22.5");
