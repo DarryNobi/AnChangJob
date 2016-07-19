@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -19,6 +20,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 public class my_register extends Activity {
@@ -27,6 +39,7 @@ public class my_register extends Activity {
     private EditText register_passwd;
     private EditText reregister_passwd;
     private Button register_submit;
+    JSONObject jsonObject=new JSONObject();
     Data mydata=(Data)getApplication();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,14 +99,14 @@ public class my_register extends Activity {
             @Override
             public void onClick(View v) {
 
-                if(!checkEdit()){
+                if (!checkEdit()) {
                     return;
                 }
-                String username=register_username.getText().toString();
-                String password=register_passwd.getText().toString();
+                String username = register_username.getText().toString();
+                String password = register_passwd.getText().toString();
                 HttpURLConnection urlConnection = null;
-                String str=null;
-                try {
+                String str = null;
+                /*try {
 
                     mydata=(Data) getApplication();
                     URL url = new URL(mydata.MYURL+"?"+username+"&"+password);
@@ -124,8 +137,61 @@ public class my_register extends Activity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
+            }*/
+                mydata=(Data)getApplication();
+                HttpPost httpPost = new HttpPost(mydata.MYURL+"user/register/");
+                // post请求方式数据放在实体类中
+                HttpEntity entity = null;
+                List<NameValuePair> list = new ArrayList<NameValuePair>();
+                list.add(new BasicNameValuePair("username", username));
+                list.add(new BasicNameValuePair("password", password));
+                try {
+                    entity = new UrlEncodedFormEntity(list, HTTP.UTF_8);
+                    httpPost.setEntity(entity);
+                } catch (UnsupportedEncodingException e1) {
+                    e1.printStackTrace();
+                }
 
+                // 2.创建客户端对象
+                HttpClient httpClient = new DefaultHttpClient();
+                // 3.客户端带着请求对象请求服务器端
+                try {
+                    // 服务器端返回请求的数据
+                    HttpResponse httpResponse = httpClient.execute(httpPost);
+                    // 解析请求返回的数据
+                    if (httpResponse != null
+                            && httpResponse.getStatusLine().getStatusCode() == 200) {
+
+                        String element = EntityUtils.toString(httpResponse.getEntity(),
+                                HTTP.UTF_8);
+                        if (element.startsWith("{")) {
+                            try {
+                                jsonObject= new JSONObject(element);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                    int code=0;
+                    try {
+                        code=jsonObject.getInt("code");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    if(code==1)
+
+                    {Toast.makeText(my_register.this, "注册成功！", Toast.LENGTH_SHORT).show();
+                        Intent intent2=new Intent(my_register.this,my_login.class);
+                        startActivity(intent2);}
+                    else
+                        Toast.makeText(my_register.this, "注册失败！", Toast.LENGTH_SHORT).show();
+
+                } catch (ClientProtocolException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         });
     }
 
