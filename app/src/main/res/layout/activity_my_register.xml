@@ -83,6 +83,38 @@
     </LinearLayout>
 
     <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="用户类型"
+            android:id="@+id/textView24" />
+        <RadioGroup android:id="@+id/radioGroup"
+            android:contentDescription="类别"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="职工用户"
+            android:id="@+id/radioButton"
+            android:checked="false" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="公司用户"
+            android:id="@+id/radioButton2"
+            android:checked="false" />
+</RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

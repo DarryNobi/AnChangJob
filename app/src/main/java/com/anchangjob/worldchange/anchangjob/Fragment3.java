@@ -2,6 +2,8 @@ package com.anchangjob.worldchange.anchangjob;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +15,24 @@ import android.view.ViewGroup;
 import com.anchangjob.worldchange.anchangjob.dummy.DummyContent;
 import com.anchangjob.worldchange.anchangjob.dummy.DummyContent.DummyItem;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,7 +48,7 @@ public class Fragment3 extends android.app.Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
-
+    Data mydata;
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -61,6 +81,19 @@ public class Fragment3 extends android.app.Fragment {
         View view = inflater.inflate(R.layout.fragment_item_list, container, false);
 
         // Set the adapter
+        JSONObject my_recruitments=getdata();
+
+        try {
+            JSONArray my_jsonarry = my_recruitments.getJSONArray("response");
+
+            for (int i = 0; i < my_jsonarry.length(); i++) {
+                JSONObject temp = (JSONObject) my_jsonarry.get(i);
+                DummyItem dummyItem=new DummyItem(temp);
+                DummyContent.addItem(dummyItem);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
@@ -72,6 +105,7 @@ public class Fragment3 extends android.app.Fragment {
             }
             recyclerView.setAdapter(new MyItemRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
+        mydata=(Data) getActivity().getApplication();
         return view;
     }
 
@@ -106,5 +140,36 @@ public class Fragment3 extends android.app.Fragment {
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
         void onListFragmentInteraction(DummyItem item);
+    }
+    JSONObject getdata(){
+        JSONObject jsonresult=new JSONObject();
+        mydata=(Data)getActivity().getApplication();
+        HttpPost httpPost = new HttpPost(mydata.MYURL+"user/recruitment_pull/");
+        // post请求方式数据放在实体类中
+        HttpClient httpClient = new DefaultHttpClient();
+        // 3.客户端带着请求对象请求服务器端
+        try {
+            // 服务器端返回请求的数据
+            HttpResponse httpResponse = httpClient.execute(httpPost);
+            // 解析请求返回的数据
+            if (httpResponse != null
+                    && httpResponse.getStatusLine().getStatusCode() == 200) {
+                String element = EntityUtils.toString(httpResponse.getEntity(),
+                        HTTP.UTF_8);
+                if (element.startsWith("{")) {
+                    try {
+                        jsonresult= new JSONObject(element);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return jsonresult;
     }
 }

@@ -18,6 +18,8 @@ import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
@@ -39,8 +41,12 @@ public class my_register extends Activity {
     private EditText register_passwd;
     private EditText reregister_passwd;
     private Button register_submit;
+    private RadioButton bt_person;
+    private RadioButton bt_company;
+    private RadioGroup rg;
     JSONObject jsonObject=new JSONObject();
     Data mydata=(Data)getApplication();
+    private String user_type;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
@@ -52,6 +58,25 @@ public class my_register extends Activity {
         register_passwd=(EditText)findViewById(R.id.register_passwd);
         reregister_passwd=(EditText)findViewById(R.id.reregister_passwd);
         register_submit=(Button)findViewById(R.id.register_submit);
+        rg=(RadioGroup)findViewById(R.id.radioGroup);
+        bt_person=(RadioButton) findViewById(R.id.radioButton);
+        bt_company=(RadioButton) findViewById(R.id.radioButton2);
+
+
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i==bt_person.getId())
+                {
+                    user_type="0";
+                }
+                else if(i==bt_company.getId())
+                {
+                    user_type="1";
+                }
+            }
+        });
+
         register_username.setOnFocusChangeListener(new OnFocusChangeListener()
         {
 
@@ -145,6 +170,7 @@ public class my_register extends Activity {
                 List<NameValuePair> list = new ArrayList<NameValuePair>();
                 list.add(new BasicNameValuePair("username", username));
                 list.add(new BasicNameValuePair("password", password));
+                list.add(new BasicNameValuePair("type", user_type));
                 try {
                     entity = new UrlEncodedFormEntity(list, HTTP.UTF_8);
                     httpPost.setEntity(entity);

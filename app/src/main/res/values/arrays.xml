@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="work_type">
+        <item>挡车工</item>
+        <item>染缸工</item>
+        <item>码布工</item>
+        <item>绣花工</item>
+        <item>机修工</item>
+        <item>检验工</item>
+        <item>绣花工</item>
+        <item>其他</item>
+    </string-array>
+
+    <string-array name="work_period">
+        <item>三班倒</item>
+        <item>两班倒</item>
+        <item>长白班</item>
+        <item>长夜班</item>
+        <item>其他</item>
+    </string-array>
+
+    <string-array name="salary_down">
+        <item>不限</item>
+        <item>1000</item>
+        <item>2000</item>
+        <item>3000</item>
+        <item>其他</item>
+    </string-array>
+
+    <string-array name="salary_top">
+    <item>不限</item>
+    <item>8000</item>
+    <item>6000</item>
+    <item>5000</item>
+    <item>其他</item>
+    </string-array>
+
+    <string-array name="age_down">
+        <item>不限</item>
+        <item>18</item>
+        <item>其他</item>
+    </string-array>
+
+    <string-array name="age_top">
+    <item>不限</item>
+    <item>60</item>
+    <item>40</item>
+    <item>其他</item>
+    </string-array>
+
+<string-array name="experience">
+<item>不限</item>
+<item>1</item>
+<item>2</item>
+<item>其他</item>
+</string-array>
+
+    </resources>

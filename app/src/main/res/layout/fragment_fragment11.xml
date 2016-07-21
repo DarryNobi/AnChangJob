@@ -1,0 +1,75 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.anchangjob.worldchange.anchangjob.Fragment1">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:weightSum="1"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="119dp"
+            android:layout_weight="0.03"
+            android:background="#6699ff">
+
+            <ImageButton
+                android:layout_width="97dp"
+                android:layout_height="119dp"
+                android:id="@+id/imageButton_1"
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="left|center_vertical" />
+
+            <TextView
+                android:layout_width="152dp"
+                android:layout_height="41dp"
+                android:text="我的ID"
+                android:textSize="30dp"
+                android:id="@+id/textView11_1"
+                android:layout_marginRight="50dp"
+                android:layout_gravity="right|center_vertical"/>
+        </FrameLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:text="发布招聘信息"
+            android:id="@+id/button4_1"
+            android:layout_weight="0.2"
+            android:layout_height="0dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:text="已发布的招聘信息"
+            android:id="@+id/button5_1"
+            android:layout_weight="0.2"
+            android:layout_height="0dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:text="New Button"
+            android:id="@+id/button6_1"
+            android:layout_weight="0.2"
+            android:layout_height="0dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:text="设置"
+            android:id="@+id/button7_1"
+            android:layout_weight="0.2"
+            android:layout_height="0dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:text="退出"
+            android:id="@+id/button8_1"
+            android:background="#ff0000"
+            android:layout_weight="0.2"
+            android:layout_height="0dp" />
+
+    </LinearLayout>
+</FrameLayout>

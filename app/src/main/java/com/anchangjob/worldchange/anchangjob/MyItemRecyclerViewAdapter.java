@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 //import com.anchangjob.worldchange.anchangjob.ItemFragment.OnListFragmentInteractionListener;
 //import com.anchangjob.worldchange.anchangjob.dummy.DummyContent.DummyItem;
@@ -22,7 +23,6 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
 
     private final List<DummyContent.DummyItem> mValues;
     private final Fragment3.OnListFragmentInteractionListener mListener;
-
     public MyItemRecyclerViewAdapter(List<DummyContent.DummyItem> items, Fragment3.OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
@@ -38,10 +38,10 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-       // holder.mIdView.setText(mValues.get(position).id);
-       // holder.mContentView.setText(mValues.get(position).content);
-        holder.mIdView.setText("标题");
-        holder.mContentView.setText("内容");
+        holder.mIdView.setText(mValues.get(position).title);
+        holder.mContentView.setText(mValues.get(position).content);
+        //holder.mIdView.setText("标题");
+        //holder.mContentView.setText("内容");
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +49,8 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
+
+                    //Toast.makeText(my_mainactivity.this, "登录失败！请检查用户名和密码是否正确！", Toast.LENGTH_SHORT).show();
                     mListener.onListFragmentInteraction(holder.mItem);
                 }
             }

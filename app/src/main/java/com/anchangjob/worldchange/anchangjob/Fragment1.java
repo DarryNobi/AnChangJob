@@ -76,7 +76,8 @@ public class Fragment1 extends android.app.Fragment {
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        statu=((Data) getActivity().getApplication()).islogedin;
+        mydata=(Data)getActivity().getApplication();
+        statu=mydata.islogedin;
         if(!statu) {//未登录的情况
              view=inflater.inflate(R.layout.fragment_fragment1_1, container, false);
             bt_login=(Button) view.findViewById(R.id.button9);
@@ -100,28 +101,52 @@ public class Fragment1 extends android.app.Fragment {
             return view;
         }else
         {///已登录的情况
-            view= inflater.inflate(R.layout.fragment_fragment1, container, false);
+           if(mydata.user_type==0) {//个人用户
+               view = inflater.inflate(R.layout.fragment_fragment1, container, false);
 
+               Button bt_myfavorite = (Button) view.findViewById(R.id.button4);
+               bt_myfavorite.setOnClickListener(new Button.OnClickListener() {
 
-            Button bt_myfavorite=(Button)view.findViewById(R.id.button4);
-            bt_myfavorite.setOnClickListener(new Button.OnClickListener(){
+                   public void onClick(View v) {
+                       Intent intent = new Intent(getActivity(), com.anchangjob.worldchange.anchangjob.mine.mine_myfavorite.class);
+                       startActivity(intent);
+                   }
+               });
 
-                public void onClick(View v) {
-                    Intent intent = new Intent(getActivity(), com.anchangjob.worldchange.anchangjob.mine.mine_myfavorite.class);
-                    startActivity(intent);
-                }
-            });
+               Button bt_exit = (Button) view.findViewById(R.id.button8);
+               bt_exit.setOnClickListener(new Button.OnClickListener() {
 
-            Button bt_exit=(Button)view.findViewById(R.id.button8);
-            bt_exit.setOnClickListener(new Button.OnClickListener(){
+                   public void onClick(View v) {
+                       mydata = (Data) getActivity().getApplication();
+                       mydata.setislogedin(false);
+                       Intent intent = new Intent(getActivity(), my_mainactivity.class);
+                       startActivity(intent);
+                   }
+               });
+           }
+            else if(mydata.user_type==1)//公司用户
+           {
+               view = inflater.inflate(R.layout.fragment_fragment11, container, false);
 
-                public void onClick(View v) {
-                    mydata=(Data)getActivity().getApplication();
-                    mydata.setislogedin(false);
-                    Intent intent = new Intent(getActivity(), my_mainactivity.class);
-                    startActivity(intent);
-                }
-            });
+               Button bt_sendrecruitment=(Button)view.findViewById(R.id.button4_1);
+               bt_sendrecruitment.setOnClickListener(new Button.OnClickListener() {
+
+                   public void onClick(View v) {
+                       Intent intent = new Intent(getActivity(), com.anchangjob.worldchange.anchangjob.recruitment_push.class);
+                       startActivity(intent);
+                   }
+               });
+               Button bt_exit = (Button) view.findViewById(R.id.button8_1);
+               bt_exit.setOnClickListener(new Button.OnClickListener() {
+
+                   public void onClick(View v) {
+                       mydata = (Data) getActivity().getApplication();
+                       mydata.setislogedin(false);
+                       Intent intent = new Intent(getActivity(), my_mainactivity.class);
+                       startActivity(intent);
+                   }
+               });
+           }
         return view;}
     }
 

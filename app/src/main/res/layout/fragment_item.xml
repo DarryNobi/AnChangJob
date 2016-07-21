@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:textAppearance="?attr/textAppearanceListItem"
+        android:background="#FFF0F5"
         android:text="标题" />
 
     <TextView
@@ -16,5 +17,6 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:textAppearance="?attr/textAppearanceListItem"
+        android:background="#F2F2F2"
         android:text="招聘信息内容" />
 </LinearLayout>

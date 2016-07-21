@@ -29,6 +29,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.apache.http.*;
@@ -103,15 +104,19 @@ public class my_login extends Activity implements OnClickListener {
                     login();
                 }
                 int code=0;
+                int ty=0;
                 try {
                      code=jsonObject.getInt("code");
+                     JSONArray j=jsonObject.getJSONArray("response");
+                    ty=((JSONObject)(j.get(0))).getInt("type");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 if(code==1)
                 {mydata=(Data)getApplication();
                 if(mydata!=null)
-                {mydata.setislogedin(true);}
+                {mydata.setislogedin(true);
+                mydata.user_type=ty;}
                     Toast.makeText(my_login.this, "登录成功！", Toast.LENGTH_SHORT).show();
                 Intent intent3=new Intent(my_login.this,my_mainactivity.class);
                 startActivity(intent3);}

@@ -7,6 +7,7 @@ public class Data extends Application {
     public int userid;
     public String username;
     public boolean islogedin;
+    public int user_type;
 final public String MYURL="http://anchangjob.applinzi.com/";
     public int gettab(){
         return this.tab;
