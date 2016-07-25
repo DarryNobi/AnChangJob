@@ -51,7 +51,7 @@
 
         <Button
             android:layout_width="match_parent"
-            android:text="New Button"
+            android:text="我的公司"
             android:id="@+id/button6_1"
             android:layout_weight="0.2"
             android:layout_height="0dp" />

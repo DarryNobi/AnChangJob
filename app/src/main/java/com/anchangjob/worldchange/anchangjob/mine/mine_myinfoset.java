@@ -2,8 +2,8 @@ package com.anchangjob.worldchange.anchangjob.mine;
 
 import android.content.Intent;
 import android.support.v4.util.Pools;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -97,6 +97,7 @@ Data mydata;
                     statu=1;
                 }
                 else if (statu==1){
+                    statu=0;
                     pushinfo();
                 }
             }

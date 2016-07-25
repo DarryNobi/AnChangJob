@@ -119,6 +119,7 @@ public class Fragment1 extends android.app.Fragment {
                    public void onClick(View v) {
                        mydata = (Data) getActivity().getApplication();
                        mydata.setislogedin(false);
+                       mydata.fileSave(getActivity(),mydata);
                        Intent intent = new Intent(getActivity(), my_mainactivity.class);
                        startActivity(intent);
                    }
@@ -128,6 +129,13 @@ public class Fragment1 extends android.app.Fragment {
 
                    public void onClick(View v) {
                        Intent intent = new Intent(getActivity(), com.anchangjob.worldchange.anchangjob.mine.mine_myinfoset.class);
+                       startActivity(intent);
+                   }
+               });Button bt_system = (Button) view.findViewById(R.id.button7);
+               bt_system.setOnClickListener(new Button.OnClickListener() {
+
+                   public void onClick(View v) {
+                       Intent intent = new Intent(getActivity(), com.anchangjob.worldchange.anchangjob.mine.mine_mysystemset.class);
                        startActivity(intent);
                    }
                });
@@ -150,10 +158,32 @@ public class Fragment1 extends android.app.Fragment {
                    public void onClick(View v) {
                        mydata = (Data) getActivity().getApplication();
                        mydata.setislogedin(false);
+                       mydata.fileSave(getActivity(),mydata);
                        Intent intent = new Intent(getActivity(), my_mainactivity.class);
                        startActivity(intent);
                    }
                });
+               Button bt_company = (Button) view.findViewById(R.id.button6_1);
+               bt_company.setOnClickListener(new Button.OnClickListener() {
+
+                   public void onClick(View v) {
+                       mydata = (Data) getActivity().getApplication();
+                       mydata.setislogedin(false);
+                       Intent intent = new Intent(getActivity(), com.anchangjob.worldchange.anchangjob.mine.mine_mycompany.class);
+                       startActivity(intent);
+                   }
+               });
+               Button bt_system = (Button) view.findViewById(R.id.button7_1);
+               bt_system.setOnClickListener(new Button.OnClickListener() {
+
+                   public void onClick(View v) {
+                       mydata = (Data) getActivity().getApplication();
+                       mydata.setislogedin(false);
+                       Intent intent = new Intent(getActivity(), com.anchangjob.worldchange.anchangjob.mine.mine_mysystemset.class);
+                       startActivity(intent);
+                   }
+               });
+
            }
         return view;}
     }

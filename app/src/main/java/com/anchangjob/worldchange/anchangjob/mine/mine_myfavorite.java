@@ -17,7 +17,7 @@ public class mine_myfavorite extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mine_myfavorite);
+        setContentView(R.layout.content_mine_myfavorite);
         LinearLayout item=(LinearLayout)findViewById(R.id.my_favorite_item);
         LinearLayout box=(LinearLayout)findViewById(R.id.my_favorite_box);
 

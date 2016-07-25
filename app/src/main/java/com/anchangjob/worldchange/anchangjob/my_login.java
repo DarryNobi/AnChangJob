@@ -1,6 +1,7 @@
 package com.anchangjob.worldchange.anchangjob;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -20,6 +21,8 @@ import android.view.View.OnFocusChangeListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.anchangjob.worldchange.anchangjob.dummy.DummyContent;
 
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -106,10 +109,12 @@ public class my_login extends Activity implements OnClickListener {
                 int code=0;
                 int ty=0;
                 int id=-1;
+                String username="0";
                 try {
                      code=jsonObject.getInt("code");
                      JSONArray j=jsonObject.getJSONArray("response");
                     id=((JSONObject)(j.get(0))).getInt("id");
+                    username=((JSONObject)(j.get(0))).getString("username");
                     ty=((JSONObject)(j.get(0))).getInt("type");
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -117,10 +122,20 @@ public class my_login extends Activity implements OnClickListener {
                 if(code==1)
                 {mydata=(Data)getApplication();
                 if(mydata!=null)
-                {mydata.setislogedin(true);
+                {   mydata.setislogedin(true);
                     mydata.userid=id;
-                mydata.user_type=ty;}
-                    Toast.makeText(my_login.this, "登录成功！", Toast.LENGTH_SHORT).show();
+                    mydata.user_type=ty;
+                    mydata.username=username;
+                    mydata.fileSave(this,mydata);
+                    if(fileIsExists())
+                {
+                    mydata=(Data)getApplication();
+                    Data dd=mydata.fileread(this);
+                    if(dd!=null)
+                        mydata.update(dd);
+                }
+                    }
+                Toast.makeText(my_login.this, "登录成功！", Toast.LENGTH_SHORT).show();
                 Intent intent3=new Intent(my_login.this,my_mainactivity.class);
                 startActivity(intent3);}
                 else
@@ -221,5 +236,18 @@ public class my_login extends Activity implements OnClickListener {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public boolean fileIsExists(){
+        try{
+            File f=new File("mydata.out");
+            if(!f.exists()){
+                return false;
+            }
+
+        }catch (Exception e) {
+            // TODO: handle exception
+            return false;
+        }
+        return true;
     }
 }

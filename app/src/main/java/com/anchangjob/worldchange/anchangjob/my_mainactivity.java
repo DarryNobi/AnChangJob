@@ -11,6 +11,10 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.anchangjob.worldchange.anchangjob.dummy.DummyContent;
+
+import java.io.File;
+
 /**
  * 项目的主Activity，所有的Fragment都嵌入在这里。
  *
@@ -18,8 +22,9 @@ import android.widget.TextView;
  */
 public class my_mainactivity extends Activity implements View.OnClickListener {
 
-    final  Data mydata=(Data)getApplication();
+    Data mydata=(Data)getApplication();
     public Data data=mydata;
+
     /**
      * 用于展示招聘信息的Fragment
      */
@@ -95,14 +100,21 @@ public class my_mainactivity extends Activity implements View.OnClickListener {
         StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
                 .detectLeakedSqlLiteObjects().detectLeakedClosableObjects()
                 .penaltyLog().penaltyDeath().build());
-
         super.onCreate(savedInstanceState);
+
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_my_mainactivity);
         // 初始化布局元素
         initViews();
         fragmentManager = getFragmentManager();
         // 第一次启动时选中第0个tab
+        if(fileIsExists())
+        {
+            mydata=(Data)getApplication();
+            Data dd=mydata.fileread(this);
+            if(dd!=null)
+                mydata.update(dd);
+        }
         setTabSelection(0);
     }
     /**
@@ -230,5 +242,18 @@ public class my_mainactivity extends Activity implements View.OnClickListener {
         if (infoFragment != null) {
             transaction.hide(infoFragment);
         }
+    }
+    public boolean fileIsExists(){
+        try{
+            File f=new File("mydata.out");
+            if(!f.exists()){
+                return false;
+            }
+
+        }catch (Exception e) {
+            // TODO: handle exception
+            return false;
+        }
+        return true;
     }
 }

@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="聊天功能怎么做啊啊啊啊啊啊啊啊啊啊"
+        android:text="功能开发中，敬请期待！"
         android:textSize="30dp"/>
 
 </FrameLayout>
