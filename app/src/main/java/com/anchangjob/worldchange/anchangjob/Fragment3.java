@@ -11,6 +11,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.NumberPicker;
+import android.widget.Toast;
 
 import com.anchangjob.worldchange.anchangjob.dummy.DummyContent;
 import com.anchangjob.worldchange.anchangjob.dummy.DummyContent.DummyItem;
@@ -55,7 +58,6 @@ public class Fragment3 extends android.app.Fragment {
      */
     public Fragment3() {
     }
-
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
     public static Fragment3 newInstance(int columnCount) {
@@ -74,18 +76,15 @@ public class Fragment3 extends android.app.Fragment {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
     }
-
-    @Override
+   @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_item_list, container, false);
-
-        // Set the adapter
+        final View view = inflater.inflate(R.layout.fragment_item_list, container, false);
         JSONObject my_recruitments=getdata();
 
         try {
             JSONArray my_jsonarry = my_recruitments.getJSONArray("response");
-
+            DummyContent.clean();
             for (int i = 0; i < my_jsonarry.length(); i++) {
                 JSONObject temp = (JSONObject) my_jsonarry.get(i);
                 DummyItem dummyItem=new DummyItem(temp);
@@ -98,6 +97,36 @@ public class Fragment3 extends android.app.Fragment {
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
+
+
+
+            recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+                int fstview=-1;
+
+                public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                    this.onScroll(view,firstVisibleItem,visibleItemCount,totalItemCount);
+                   fstview=firstVisibleItem;
+                }
+
+                @Override
+                public void onScrollStateChanged(RecyclerView recyclerView,
+                                                 int newState) {
+                    super.onScrollStateChanged(recyclerView, newState);
+
+                    if (newState== NumberPicker.OnScrollListener.SCROLL_STATE_IDLE&&fstview==0)
+                        Toast.makeText(getActivity(), "刷新测试", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
+                }
+
+            });
+
+
+
+
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
@@ -108,7 +137,6 @@ public class Fragment3 extends android.app.Fragment {
         mydata=(Data) getActivity().getApplication();
         return view;
     }
-
 
     @Override
     public void onAttach(Context context) {
@@ -127,6 +155,7 @@ public class Fragment3 extends android.app.Fragment {
         mListener = null;
     }
 
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -141,6 +170,7 @@ public class Fragment3 extends android.app.Fragment {
         // TODO: Update argument type and name
         void onListFragmentInteraction(DummyItem item);
     }
+
     JSONObject getdata(){
         JSONObject jsonresult=new JSONObject();
         mydata=(Data)getActivity().getApplication();
@@ -172,4 +202,6 @@ public class Fragment3 extends android.app.Fragment {
         }
         return jsonresult;
     }
+
+
 }

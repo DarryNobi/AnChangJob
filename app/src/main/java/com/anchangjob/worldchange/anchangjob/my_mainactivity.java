@@ -23,7 +23,7 @@ public class my_mainactivity extends Activity implements View.OnClickListener {
     /**
      * 用于展示招聘信息的Fragment
      */
-    private Fragment1 jobFragment;
+    private Fragment3 jobFragment;
 
     /**
      * 用于展示聊天记录的Fragment
@@ -33,7 +33,7 @@ public class my_mainactivity extends Activity implements View.OnClickListener {
     /**
      * 用于展示个人信息的Fragment
      */
-    private Fragment3 infoFragment;
+    private Fragment1 infoFragment;
 
     /**
      * 消息招聘信息布局
@@ -158,13 +158,13 @@ public class my_mainactivity extends Activity implements View.OnClickListener {
         // 先隐藏掉所有的Fragment，以防止有多个Fragment显示在界面上的情况
         hideFragments(transaction);
         switch (index) {
-            case 2:
+            case 0:
                 // 当点击了消息tab时，改变控件的图片和文字颜色
                 jobImage.setImageResource(R.drawable.job);
                 jobText.setTextColor(Color.BLACK);
                 if (jobFragment == null) {
                     // 如果jobFragment为空，则创建一个并添加到界面上
-                    jobFragment = new Fragment1();
+                    jobFragment = new Fragment3();
                     transaction.add(R.id.content, jobFragment);
                 } else {
                     // 如果jobFragment不为空，则直接将它显示出来
@@ -184,13 +184,13 @@ public class my_mainactivity extends Activity implements View.OnClickListener {
                     transaction.show(comFragment);
                 }
                 break;
-            case 0:
+            case 2:
                 // 当点击了动态tab时，改变控件的图片和文字颜色
                 infoImage.setImageResource(R.drawable.info);
                 infoText.setTextColor(Color.BLACK);
                 if (infoFragment == null) {
                     // 如果infoFragment为空，则创建一个并添加到界面上
-                    infoFragment = new Fragment3();
+                    infoFragment = new Fragment1();
                     transaction.add(R.id.content,infoFragment);
                 } else {
                     // 如果infoFragment不为空，则直接将它显示出来

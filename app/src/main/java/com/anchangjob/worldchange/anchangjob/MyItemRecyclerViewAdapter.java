@@ -80,4 +80,5 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
             return super.toString() + " '" + mContentView.getText() + "'";
         }
     }
+
 }

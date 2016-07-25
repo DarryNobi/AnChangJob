@@ -19,12 +19,12 @@ public class DummyContent {
     /**
      * An array of sample (dummy) items.
      */
-    public static final List<DummyItem> ITEMS = new ArrayList<DummyItem>();
+    public static  List<DummyItem> ITEMS = new ArrayList<DummyItem>();
 
     /**
      * A map of sample (dummy) items, by ID.
      */
-    public static final Map<String, DummyItem> ITEM_MAP = new HashMap<String, DummyItem>();
+    public static  Map<String, DummyItem> ITEM_MAP = new HashMap<String, DummyItem>();
 
     private static  int COUNT = 25;
 /*
@@ -39,7 +39,10 @@ public class DummyContent {
         ITEMS.add(item);
         ITEM_MAP.put(item.title, item);
     }
-
+public static void clean(){
+    ITEMS=new ArrayList<DummyItem>();
+    ITEM_MAP=new HashMap<String, DummyItem>();
+}
     /*private static DummyItem createDummyItem(int position) {
         return new DummyItem("title","content");
     }*/

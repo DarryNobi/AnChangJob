@@ -33,6 +33,7 @@
                 android:id="@+id/textView11"
                 android:layout_marginRight="50dp"
                 android:layout_gravity="right|center_vertical"/>
+
         </FrameLayout>
 
         <Button
@@ -51,7 +52,7 @@
 
         <Button
             android:layout_width="match_parent"
-            android:text="New Button"
+            android:text="个人信息"
             android:id="@+id/button6"
             android:layout_weight="0.2"
             android:layout_height="0dp" />

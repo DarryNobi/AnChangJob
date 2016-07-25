@@ -19,4 +19,11 @@
         android:textAppearance="?attr/textAppearanceListItem"
         android:background="#F2F2F2"
         android:text="招聘信息内容" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="#111111"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/textView25" />
 </LinearLayout>

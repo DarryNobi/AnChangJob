@@ -55,4 +55,48 @@
 <item>其他</item>
 </string-array>
 
+    <string-array name="sex">
+        <item>男</item>
+        <item>女</item>
+        <item>其他</item>
+    </string-array>
+
+    <string-array name="year">
+        <item>2000</item>
+        <item>1990</item>
+        <item>1980</item>
+        <item>其他</item>
+    </string-array>
+
+    <string-array name="month">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>其他</item>
+    </string-array>
+
+
+    <string-array name="education">
+        <item>初中及以下</item>
+        <item>高中</item>
+        <item>大学</item>
+        <item>其他</item>
+    </string-array>
+
+
+    <string-array name="jiguan">
+        <item>重庆</item>
+        <item>贵州</item>
+        <item>四川</item>
+        <item>其他</item>
+    </string-array>
     </resources>

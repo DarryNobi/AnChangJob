@@ -105,9 +105,11 @@ public class my_login extends Activity implements OnClickListener {
                 }
                 int code=0;
                 int ty=0;
+                int id=-1;
                 try {
                      code=jsonObject.getInt("code");
                      JSONArray j=jsonObject.getJSONArray("response");
+                    id=((JSONObject)(j.get(0))).getInt("id");
                     ty=((JSONObject)(j.get(0))).getInt("type");
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -116,6 +118,7 @@ public class my_login extends Activity implements OnClickListener {
                 {mydata=(Data)getApplication();
                 if(mydata!=null)
                 {mydata.setislogedin(true);
+                    mydata.userid=id;
                 mydata.user_type=ty;}
                     Toast.makeText(my_login.this, "登录成功！", Toast.LENGTH_SHORT).show();
                 Intent intent3=new Intent(my_login.this,my_mainactivity.class);

@@ -123,6 +123,14 @@ public class Fragment1 extends android.app.Fragment {
                        startActivity(intent);
                    }
                });
+               Button bt_info = (Button) view.findViewById(R.id.button6);
+               bt_info.setOnClickListener(new Button.OnClickListener() {
+
+                   public void onClick(View v) {
+                       Intent intent = new Intent(getActivity(), com.anchangjob.worldchange.anchangjob.mine.mine_myinfoset.class);
+                       startActivity(intent);
+                   }
+               });
            }
             else if(mydata.user_type==1)//公司用户
            {
