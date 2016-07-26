@@ -16,7 +16,7 @@
         android:name=".Data"
         android:allowBackup="true"
         android:icon="@mipmap/icon"
-        android:label="@string/app_name"
+        android:label="安昌工作"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
