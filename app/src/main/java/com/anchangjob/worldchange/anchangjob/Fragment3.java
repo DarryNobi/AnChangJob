@@ -137,7 +137,7 @@ public class Fragment3 extends android.app.Fragment {
         mydata=(Data) getActivity().getApplication();
         return view;
     }
-
+/*///////////////////////////因为版本问题注释掉的
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -147,7 +147,7 @@ public class Fragment3 extends android.app.Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnListFragmentInteractionListener");
         }
-    }
+    }*/
 
     @Override
     public void onDetach() {

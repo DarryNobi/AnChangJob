@@ -195,7 +195,7 @@ public class Fragment1 extends android.app.Fragment {
         }
     }
 
-    @Override
+   /* @Override///////////////////////////因为版本问题注释掉的
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
@@ -204,7 +204,7 @@ public class Fragment1 extends android.app.Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
-    }
+    }*/
 
     @Override
     public void onDetach() {

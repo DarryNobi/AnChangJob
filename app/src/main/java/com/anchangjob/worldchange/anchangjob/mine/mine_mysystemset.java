@@ -1,8 +1,8 @@
 package com.anchangjob.worldchange.anchangjob.mine;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,7 +20,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class mine_mysystemset extends AppCompatActivity {
+public class mine_mysystemset extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

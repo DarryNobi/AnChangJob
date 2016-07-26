@@ -1,7 +1,7 @@
 package com.anchangjob.worldchange.anchangjob;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -28,7 +28,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class recruitment_push extends AppCompatActivity {
+public class recruitment_push extends Activity {
 
     private EditText title;
     private EditText content;

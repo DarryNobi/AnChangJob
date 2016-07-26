@@ -1,9 +1,9 @@
 package com.anchangjob.worldchange.anchangjob.mine;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.util.Pools;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,7 +34,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class mine_myinfoset extends AppCompatActivity {
+public class mine_myinfoset extends Activity {
 
 
     private EditText username;
