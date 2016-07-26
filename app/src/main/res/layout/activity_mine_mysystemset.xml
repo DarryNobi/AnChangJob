@@ -12,7 +12,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="安昌工作V1.0\n”安昌工作“是一款大学生创业开发的手机软件，旨在帮助在安昌的求职者找到工作，帮助安昌的公司更快更好地招聘到职工\n软件作者:\nzhoutonglx\n联系方式：zhoutonglx@qq.com\nDarryfei\n联系方式：darryfei@gmail.com\n联系电话：18811346830\n\n更多信息欢迎质询！"
+        android:text="安昌工作V1.0\n”安昌工作“是一款大学生创业开发的手机软件，旨在帮助在安昌的求职者找到工作，帮助安昌的公司更快更好地招聘到职工\n软件作者:\nzhoutonglx\n联系方式：zhoutonglx@qq.com\nDarryfei\n联系方式：darryfei@gmail.com\n联系电话：18811346830\n\n更多信息欢迎咨询！"
         android:textSize="20dp"
         android:id="@+id/textView39" />
 

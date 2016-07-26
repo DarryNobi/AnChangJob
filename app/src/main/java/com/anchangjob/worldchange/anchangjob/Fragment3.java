@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.Toast;
 
@@ -169,7 +170,13 @@ public class Fragment3 extends android.app.Fragment {
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
         void onListFragmentInteraction(DummyItem item);
+
     }
+
+    /*////////////////////不知道可不可以用
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        //showDetails(position);
+    }*/
 
     JSONObject getdata(){
         JSONObject jsonresult=new JSONObject();

@@ -14,6 +14,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.StrictMode;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -239,7 +240,9 @@ public class my_login extends Activity implements OnClickListener {
     }
     public boolean fileIsExists(){
         try{
-            File f=new File("mydata.out");
+            String SDPATH = Environment.getExternalStorageDirectory().getPath() + "//";
+            File f = new File(SDPATH +"/anchangjob/"+"mydata.out");
+
             if(!f.exists()){
                 return false;
             }

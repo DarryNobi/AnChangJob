@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">AnChangJob</string>
     <string name="title_activity_login">Sign in</string>
+    <string name="version_name">1.0.1</string>
+    <string name="can_not_find_version_name">0.0.0</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>

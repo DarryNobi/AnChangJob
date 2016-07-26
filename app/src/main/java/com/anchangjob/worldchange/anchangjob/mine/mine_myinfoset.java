@@ -184,6 +184,7 @@ Data mydata;
         // post请求方式数据放在实体类中
         HttpEntity entity = null;
         List<NameValuePair> list = new ArrayList<NameValuePair>();
+        list.add(new BasicNameValuePair("id", Integer.toString(mydata.userid)));
         list.add(new BasicNameValuePair("username",username.getText().toString()));
         list.add(new BasicNameValuePair("phone",phone.getText().toString()));
         list.add(new BasicNameValuePair("sex",sex.getSelectedItem().toString()));

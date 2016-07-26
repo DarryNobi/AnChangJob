@@ -3,8 +3,11 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.StrictMode;
 import android.view.View;
 import android.view.Window;
@@ -108,6 +111,7 @@ public class my_mainactivity extends Activity implements View.OnClickListener {
         initViews();
         fragmentManager = getFragmentManager();
         // 第一次启动时选中第0个tab
+        boolean test=fileIsExists();
         if(fileIsExists())
         {
             mydata=(Data)getApplication();
@@ -244,8 +248,8 @@ public class my_mainactivity extends Activity implements View.OnClickListener {
         }
     }
     public boolean fileIsExists(){
-        try{
-            File f=new File("mydata.out");
+        try{String SDPATH = Environment.getExternalStorageDirectory().getPath() + "//";
+            File f = new File(SDPATH +"/anchangjob/"+"mydata.out");
             if(!f.exists()){
                 return false;
             }
@@ -256,4 +260,25 @@ public class my_mainactivity extends Activity implements View.OnClickListener {
         }
         return true;
     }
+    public String getVersion() {
+
+        try {
+
+            PackageManager manager = this.getPackageManager();
+
+            PackageInfo info = manager.getPackageInfo(this.getPackageName(), 0);
+
+            String version = info.versionName;
+
+            return this.getString(R.string.version_name) + version;
+
+            } catch (Exception e) {
+
+            e.printStackTrace();
+
+            return this.getString(R.string.can_not_find_version_name);
+
+            }
+
+        }
 }
