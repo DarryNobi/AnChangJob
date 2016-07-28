@@ -111,7 +111,6 @@ public class my_mainactivity extends Activity implements View.OnClickListener {
         initViews();
         fragmentManager = getFragmentManager();
         // 第一次启动时选中第0个tab
-        boolean test=fileIsExists();
         if(fileIsExists())
         {
             mydata=(Data)getApplication();

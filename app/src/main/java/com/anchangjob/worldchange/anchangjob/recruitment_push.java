@@ -82,7 +82,7 @@ public class recruitment_push extends Activity {
                 s_salary_down=salary_down.getSelectedItem().toString();
                 s_salary_top=salary_top.getSelectedItem().toString();
                 s_experience=experience.getSelectedItem().toString();
-//                s_amount=amount.getSelectedItem().toString();
+                s_amount=amount.getSelectedItem().toString();
 
                 List<NameValuePair> list = new ArrayList<NameValuePair>();
                 list.add(new BasicNameValuePair("title", s_title));
@@ -92,7 +92,7 @@ public class recruitment_push extends Activity {
                 list.add(new BasicNameValuePair("salary_down", s_salary_down));
                 list.add(new BasicNameValuePair("salary_top", s_salary_top));
                 list.add(new BasicNameValuePair("experience", s_experience));
-                list.add(new BasicNameValuePair("amount", "debug"));
+                list.add(new BasicNameValuePair("amount", s_amount));
                 push(list);
             }
         });
@@ -121,6 +121,9 @@ public class recruitment_push extends Activity {
                 Intent intent2=new Intent(recruitment_push.this,my_mainactivity.class);
                 startActivity(intent2);
             }
+            else
+                Toast.makeText(recruitment_push.this, "发布失败，请检查网络！", Toast.LENGTH_SHORT).show();
+
         } catch (ClientProtocolException e) {
             e.printStackTrace();
         } catch (IOException e) {

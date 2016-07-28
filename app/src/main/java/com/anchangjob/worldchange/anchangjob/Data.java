@@ -96,7 +96,7 @@ public void update(Data d){
 
         if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
             File sdCardDir = Environment.getExternalStorageDirectory();//获取SDCard目录
-            File sdFile = new File(sdCardDir, "mydata.out");
+            File sdFile = new File(sdCardDir+"/anchangjob/", "mydata.out");
 
             try {
                 FileInputStream fis = new FileInputStream(sdFile);   //获得输入流

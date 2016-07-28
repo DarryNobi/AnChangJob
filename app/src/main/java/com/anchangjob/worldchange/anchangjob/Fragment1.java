@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.app.Activity;
+import android.widget.TextView;
 
 
 /**
@@ -101,9 +102,13 @@ public class Fragment1 extends android.app.Fragment {
             return view;
         }else
         {///已登录的情况
+
+            mydata = (Data) getActivity().getApplication();
+
            if(mydata.user_type==0) {//个人用户
                view = inflater.inflate(R.layout.fragment_fragment1, container, false);
-
+               TextView textview=(TextView) view.findViewById(R.id.textView11);
+               textview.setText(mydata.username);
                Button bt_myfavorite = (Button) view.findViewById(R.id.button4);
                bt_myfavorite.setOnClickListener(new Button.OnClickListener() {
 
@@ -117,7 +122,7 @@ public class Fragment1 extends android.app.Fragment {
                bt_exit.setOnClickListener(new Button.OnClickListener() {
 
                    public void onClick(View v) {
-                       mydata = (Data) getActivity().getApplication();
+
                        mydata.setislogedin(false);
                        mydata.fileSave(getActivity(),mydata);
                        Intent intent = new Intent(getActivity(), my_mainactivity.class);
@@ -142,8 +147,10 @@ public class Fragment1 extends android.app.Fragment {
            }
             else if(mydata.user_type==1)//公司用户
            {
-               view = inflater.inflate(R.layout.fragment_fragment11, container, false);
 
+               view = inflater.inflate(R.layout.fragment_fragment11, container, false);
+               TextView textview=(TextView) view.findViewById(R.id.textView11_1);
+               textview.setText(mydata.username);
                Button bt_sendrecruitment=(Button)view.findViewById(R.id.button4_1);
                bt_sendrecruitment.setOnClickListener(new Button.OnClickListener() {
 
@@ -156,7 +163,6 @@ public class Fragment1 extends android.app.Fragment {
                bt_exit.setOnClickListener(new Button.OnClickListener() {
 
                    public void onClick(View v) {
-                       mydata = (Data) getActivity().getApplication();
                        mydata.setislogedin(false);
                        mydata.fileSave(getActivity(),mydata);
                        Intent intent = new Intent(getActivity(), my_mainactivity.class);

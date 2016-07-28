@@ -1,6 +1,7 @@
 package com.anchangjob.worldchange.anchangjob;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -53,6 +54,7 @@ public class Fragment3 extends android.app.Fragment {
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
     Data mydata;
+    JSONArray my_jsonarry;
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -78,13 +80,13 @@ public class Fragment3 extends android.app.Fragment {
         }
     }
    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_item_list, container, false);
         JSONObject my_recruitments=getdata();
 
         try {
-            JSONArray my_jsonarry = my_recruitments.getJSONArray("response");
+            my_jsonarry = my_recruitments.getJSONArray("response");
             DummyContent.clean();
             for (int i = 0; i < my_jsonarry.length(); i++) {
                 JSONObject temp = (JSONObject) my_jsonarry.get(i);
@@ -98,7 +100,6 @@ public class Fragment3 extends android.app.Fragment {
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
-
 
 
             recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -126,7 +127,29 @@ public class Fragment3 extends android.app.Fragment {
             });
 
 
+            mListener=new OnListFragmentInteractionListener(){
+                @Override
+                public void onListFragmentInteraction(DummyItem item) {
 
+                }
+
+                @Override
+                public void onItemClick(MyItemRecyclerViewAdapter.ViewHolder item, int position) {
+
+                    Toast.makeText(getActivity(), "点击事件测试", Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(getActivity(),recruitment_detail.class);
+                    Bundle bundle = new Bundle();
+                    int temp= 0;
+                    try {
+                        temp = ((JSONObject) my_jsonarry.get(position)).getInt("id");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    bundle.putInt("recruitment",temp );
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+            };
 
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -135,6 +158,7 @@ public class Fragment3 extends android.app.Fragment {
             }
             recyclerView.setAdapter(new MyItemRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
+
         mydata=(Data) getActivity().getApplication();
         return view;
     }
@@ -167,17 +191,22 @@ public class Fragment3 extends android.app.Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnListFragmentInteractionListener {
+    public interface OnListFragmentInteractionListener{
         // TODO: Update argument type and name
         void onListFragmentInteraction(DummyItem item);
+        void onItemClick(MyItemRecyclerViewAdapter.ViewHolder item, int position);
+        //Toast.makeText(this.my_login, "密码不能为空", Toast.LENGTH_SHORT).show();
 
     }
 
+
+    public void onListFragmentInteraction(DummyItem item){
+        Toast.makeText(getActivity(), "点击事件测试", Toast.LENGTH_SHORT).show();
+    }
     /*////////////////////不知道可不可以用
     public void onListItemClick(ListView l, View v, int position, long id) {
         //showDetails(position);
     }*/
-
     JSONObject getdata(){
         JSONObject jsonresult=new JSONObject();
         mydata=(Data)getActivity().getApplication();

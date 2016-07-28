@@ -1,6 +1,7 @@
 package com.anchangjob.worldchange.anchangjob;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,17 +43,27 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         holder.mContentView.setText(mValues.get(position).content);
         //holder.mIdView.setText("标题");
         //holder.mContentView.setText("内容");
-
         holder.mView.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
 
-                    //Toast.makeText(my_mainactivity.this, "登录失败！请检查用户名和密码是否正确！", Toast.LENGTH_SHORT).show();
+
                     mListener.onListFragmentInteraction(holder.mItem);
                 }
+
+                holder.itemView.setOnClickListener(new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        int pos = holder.getLayoutPosition();
+                        mListener.onItemClick(holder, pos);
+                    }
+                });
             }
         });
     }
