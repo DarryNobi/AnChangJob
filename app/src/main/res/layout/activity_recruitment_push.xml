@@ -90,8 +90,8 @@
                 android:id="@+id/textView18" />
 
             <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
                 android:entries="@array/work_period"
                 android:id="@+id/spinner3" />
         </LinearLayout>
@@ -111,13 +111,13 @@
 
             <Spinner
                 android:layout_width="126dp"
-                android:layout_height="wrap_content"
+                android:layout_height="53dp"
                 android:entries="@array/salary_down"
                 android:id="@+id/spinner4" />
 
             <Spinner
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="55dp"
                 android:entries="@array/salary_top"
                 android:id="@+id/spinner5" />
         </LinearLayout>
@@ -137,13 +137,13 @@
 
             <Spinner
                 android:layout_width="137dp"
-                android:layout_height="wrap_content"
+                android:layout_height="46dp"
                 android:entries="@array/age_down"
                 android:id="@+id/spinner6" />
 
             <Spinner
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="39dp"
                 android:entries="@array/age_top"
                 android:id="@+id/spinner7" />
 
@@ -164,7 +164,7 @@
 
             <Spinner
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="46dp"
                 android:entries="@array/experience"
                 android:id="@+id/spinner8" />
         </LinearLayout>
@@ -182,10 +182,48 @@
                 android:text="招工人数"
                 android:id="@+id/textView22" />
 
-            <Spinner
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/editText16" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#cccccc"
+            android:weightSum="1">
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinner9" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="负责人"
+                android:textColor="#ff0000"
+                android:id="@+id/textView62" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText14"
+                android:layout_weight="0.33" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="联系电话"
+                android:textColor="#ff0000"
+                android:id="@+id/textView63" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText15"
+                android:layout_weight="0.59" />
         </LinearLayout>
 
         <Button

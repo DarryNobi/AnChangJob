@@ -30,6 +30,8 @@ import java.util.List;
 public class recruitment_detail extends Activity {
 
     Data mydata=(Data) getApplication();
+    int isfavor=0;
+    Button bt_favor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,16 @@ public class recruitment_detail extends Activity {
         final int recruitment_id=bundle.getInt("recruitment");
 
         JSONObject recruitment=getdata(recruitment_id);
+
+        bt_favor = (Button)findViewById(R.id.button15);
+        try {
+            isfavor=recruitment.getInt("is_collected");
+            if(isfavor==1)
+            {bt_favor.setText("取消收藏");}
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
 
         TextView textview_title=(TextView)findViewById(R.id.textView40);
         TextView textview_content=(TextView)findViewById(R.id.textView41);
@@ -53,12 +65,20 @@ public class recruitment_detail extends Activity {
         TextView textview_name=(TextView)findViewById(R.id.textView43);
         TextView textview_phone=(TextView)findViewById(R.id.textView45);
 
-        Button bt_favor = (Button)findViewById(R.id.button15);
         bt_favor.setOnClickListener(new Button.OnClickListener() {
 
             public void onClick(View v) {
+
                 mydata=(Data)getApplication();
-                favor(recruitment_id,mydata.userid);
+                if(isfavor==1){
+                    if(unfavor(recruitment_id,mydata.userid))
+                    {bt_favor.setText("收藏");
+                    isfavor=0;}
+                    }
+                else
+                {if(favor(recruitment_id,mydata.userid))
+                {bt_favor.setText("取消收藏");
+                    isfavor=1;}}
             }
         });
 
@@ -94,6 +114,7 @@ public class recruitment_detail extends Activity {
         HttpEntity entity = null;
         List<NameValuePair> list = new ArrayList<NameValuePair>();
         list.add(new BasicNameValuePair("recruitment_id", Integer.toString(id)));
+        list.add(new BasicNameValuePair("uid", Integer.toString(mydata.userid)));
         try {
             entity = new UrlEncodedFormEntity(list, HTTP.UTF_8);
             httpPost.setEntity(entity);
@@ -133,7 +154,7 @@ public class recruitment_detail extends Activity {
         // post请求方式数据放在实体类中
         HttpEntity entity = null;
         List<NameValuePair> list = new ArrayList<NameValuePair>();
-        list.add(new BasicNameValuePair("collect_ID", Integer.toString(recruitment_id)));
+        list.add(new BasicNameValuePair("collect_id", Integer.toString(recruitment_id)));
         list.add(new BasicNameValuePair("uid", Integer.toString(user_id)));
         try {
             entity = new UrlEncodedFormEntity(list, HTTP.UTF_8);
@@ -153,6 +174,41 @@ public class recruitment_detail extends Activity {
             }
             else
                 Toast.makeText(recruitment_detail.this, "收藏失败，请检查网络是否正常！", Toast.LENGTH_SHORT).show();
+
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    boolean unfavor(int recruitment_id,int user_id){
+        HttpPost httpPost = new HttpPost(mydata.MYURL+"home/collect/");
+        // post请求方式数据放在实体类中
+        HttpEntity entity = null;
+        List<NameValuePair> list = new ArrayList<NameValuePair>();
+        list.add(new BasicNameValuePair("collect_id", Integer.toString(recruitment_id)));
+        list.add(new BasicNameValuePair("uid", Integer.toString(user_id)));
+        try {
+            entity = new UrlEncodedFormEntity(list, HTTP.UTF_8);
+            httpPost.setEntity(entity);
+        } catch (UnsupportedEncodingException e1) {
+            e1.printStackTrace();
+        }
+        HttpClient httpClient = new DefaultHttpClient();
+        // 3.客户端带着请求对象请求服务器端
+        try {
+            // 服务器端返回请求的数据
+            HttpResponse httpResponse = httpClient.execute(httpPost);
+            // 解析请求返回的数据
+            if (httpResponse != null
+                    && httpResponse.getStatusLine().getStatusCode() == 200) {
+                Toast.makeText(recruitment_detail.this, "取消收藏成功！", Toast.LENGTH_SHORT).show();
+
+            }
+            else
+                Toast.makeText(recruitment_detail.this, "取消收藏失败，请检查网络是否正常！", Toast.LENGTH_SHORT).show();
 
         } catch (ClientProtocolException e) {
             e.printStackTrace();

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.app.Activity;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
@@ -127,6 +128,15 @@ public class Fragment1 extends android.app.Fragment {
                        mydata.fileSave(getActivity(),mydata);
                        Intent intent = new Intent(getActivity(), my_mainactivity.class);
                        startActivity(intent);
+                   }
+               });
+               Button bt_comment = (Button) view.findViewById(R.id.button5);
+               bt_comment.setOnClickListener(new Button.OnClickListener() {
+
+                   public void onClick(View v) {
+
+
+                       Toast.makeText(getActivity(), "功能开发中，敬请期待！", Toast.LENGTH_SHORT).show();
                    }
                });
                Button bt_info = (Button) view.findViewById(R.id.button6);

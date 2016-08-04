@@ -136,7 +136,9 @@ public class Fragment3 extends android.app.Fragment {
                 @Override
                 public void onItemClick(MyItemRecyclerViewAdapter.ViewHolder item, int position) {
 
-                    Toast.makeText(getActivity(), "点击事件测试", Toast.LENGTH_SHORT).show();
+                    if(!mydata.islogedin)
+                        Toast.makeText(getActivity(), "您还未登录，请登录后查看详情！", Toast.LENGTH_SHORT).show();
+                    else{
                     Intent intent=new Intent(getActivity(),recruitment_detail.class);
                     Bundle bundle = new Bundle();
                     int temp= 0;
@@ -147,7 +149,7 @@ public class Fragment3 extends android.app.Fragment {
                     }
                     bundle.putInt("recruitment",temp );
                     intent.putExtras(bundle);
-                    startActivity(intent);
+                    startActivity(intent);}
                 }
             };
 
@@ -211,7 +213,6 @@ public class Fragment3 extends android.app.Fragment {
         JSONObject jsonresult=new JSONObject();
         mydata=(Data)getActivity().getApplication();
         HttpPost httpPost = new HttpPost(mydata.MYURL+"user/recruitment_pull/");
-        // post请求方式数据放在实体类中
         HttpClient httpClient = new DefaultHttpClient();
         // 3.客户端带着请求对象请求服务器端
         try {

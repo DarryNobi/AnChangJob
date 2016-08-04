@@ -39,7 +39,9 @@ public class recruitment_push extends Activity {
     private Spinner salary_down;
     private Spinner salary_top;
     private Spinner experience;
-    private Spinner amount;
+    private EditText amount;
+    private EditText responsible_name;
+    private EditText responsible_phone;
 
     private String s_title;
     private String s_content;
@@ -51,6 +53,8 @@ public class recruitment_push extends Activity {
     private String s_salary_top;
     private String s_experience;
     private String s_amount;
+    private String s_responsible_name;
+    private String s_responsible_phone;
 
     private Button push_submit;
     Data mydata=(Data)getApplication();
@@ -68,8 +72,10 @@ public class recruitment_push extends Activity {
         salary_down=(Spinner)findViewById(R.id.spinner6);
         salary_top=(Spinner)findViewById(R.id.spinner7);
         experience=(Spinner)findViewById(R.id.spinner8);
-        amount=(Spinner)findViewById(R.id.spinner9);
+        amount=(EditText)findViewById(R.id.editText16);
         push_submit=(Button)findViewById(R.id.button11);
+        responsible_name=(EditText)findViewById(R.id.editText14);
+        responsible_phone=(EditText)findViewById(R.id.editText15);
 
         push_submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,7 +88,9 @@ public class recruitment_push extends Activity {
                 s_salary_down=salary_down.getSelectedItem().toString();
                 s_salary_top=salary_top.getSelectedItem().toString();
                 s_experience=experience.getSelectedItem().toString();
-                s_amount=amount.getSelectedItem().toString();
+                s_amount=amount.getText().toString();
+                s_responsible_name=responsible_name.getText().toString();
+                s_responsible_phone=responsible_phone.getText().toString();
 
                 List<NameValuePair> list = new ArrayList<NameValuePair>();
                 list.add(new BasicNameValuePair("title", s_title));
@@ -93,6 +101,8 @@ public class recruitment_push extends Activity {
                 list.add(new BasicNameValuePair("salary_top", s_salary_top));
                 list.add(new BasicNameValuePair("experience", s_experience));
                 list.add(new BasicNameValuePair("amount", s_amount));
+                list.add(new BasicNameValuePair("responsible_name", s_responsible_name));
+                list.add(new BasicNameValuePair("responsible_phone", s_responsible_phone));
                 push(list);
             }
         });
